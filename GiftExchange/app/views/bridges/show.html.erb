@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @bridge.user_id %>
+</p>
+
+<p>
+  <strong>Exchange:</strong>
+  <%= @bridge.exchange_id %>
+</p>
+
+<%= link_to 'Edit', edit_bridge_path(@bridge) %> |
+<%= link_to 'Back', bridges_path %>
