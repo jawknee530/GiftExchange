@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   resources :exchanges
+  resources :bridges
+  resources :exchanges do
+    resources :bridges, :shallow => true
+  end
   devise_for :users
   root 'exchanges#index'
   # The priority is based upon order of creation: first created -> highest priority.

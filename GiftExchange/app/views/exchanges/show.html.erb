@@ -6,19 +6,24 @@
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @exchange.description %>
+  <strong>Descripton:</strong>
+  <%= @exchange.descripton %>
 </p>
 
 <p>
-  <strong>Deadline:</strong>
-  <%= @exchange.deadline %>
+  <strong>Dealine:</strong>
+  <%= @exchange.dealine %>
 </p>
 
 <p>
   <strong>Date:</strong>
   <%= @exchange.date %>
 </p>
+
+<p>
+  <strong>User:</strong>
+  <%= @exchange.user.name %>
+  </p>
 
 <%= link_to 'Edit', edit_exchange_path(@exchange) %> |
 <%= link_to 'Back', exchanges_path %>
