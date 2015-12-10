@@ -1,1 +1,1 @@
-json.extract! @exchange, :id, :name, :descripton, :dealine, :date, :user_id, :created_at, :updated_at
+json.extract! @exchange, :id, :name, :Description, :Deadline, :Date, :user_id, :created_at, :updated_at

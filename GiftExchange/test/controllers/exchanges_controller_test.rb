@@ -18,7 +18,7 @@ class ExchangesControllerTest < ActionController::TestCase
 
   test "should create exchange" do
     assert_difference('Exchange.count') do
-      post :create, exchange: { date: @exchange.date, dealine: @exchange.dealine, descripton: @exchange.descripton, name: @exchange.name, user_id: @exchange.user_id }
+      post :create, exchange: { Date: @exchange.Date, Deadline: @exchange.Deadline, Description: @exchange.Description, name: @exchange.name, user_id: @exchange.user_id }
     end
 
     assert_redirected_to exchange_path(assigns(:exchange))
@@ -35,7 +35,7 @@ class ExchangesControllerTest < ActionController::TestCase
   end
 
   test "should update exchange" do
-    patch :update, id: @exchange, exchange: { date: @exchange.date, dealine: @exchange.dealine, descripton: @exchange.descripton, name: @exchange.name, user_id: @exchange.user_id }
+    patch :update, id: @exchange, exchange: { Date: @exchange.Date, Deadline: @exchange.Deadline, Description: @exchange.Description, name: @exchange.name, user_id: @exchange.user_id }
     assert_redirected_to exchange_path(assigns(:exchange))
   end
 

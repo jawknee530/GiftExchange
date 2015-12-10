@@ -16,16 +16,20 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :descripton %><br>
-    <%= f.text_field :descripton %>
+    <%= f.label :Description %><br>
+    <%= f.text_field :Description %>
   </div>
   <div class="field">
-    <%= f.label :dealine %><br>
-    <%= f.text_field :dealine %>
+    <%= f.label :Deadline %><br>
+    <%= f.text_field :Deadline %>
   </div>
   <div class="field">
-    <%= f.label :date %><br>
-    <%= f.text_field :date %>
+    <%= f.label :Date %><br>
+    <%= f.text_field :Date %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
   </div>
   <div class="actions">
     <%= f.submit %>

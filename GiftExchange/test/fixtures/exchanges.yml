@@ -2,14 +2,14 @@
 
 one:
   name: MyString
-  descripton: MyString
-  dealine: MyString
-  date: MyString
+  Description: MyString
+  Deadline: MyString
+  Date: MyString
   user_id: 
 
 two:
   name: MyString
-  descripton: MyString
-  dealine: MyString
-  date: MyString
+  Description: MyString
+  Deadline: MyString
+  Date: MyString
   user_id: 

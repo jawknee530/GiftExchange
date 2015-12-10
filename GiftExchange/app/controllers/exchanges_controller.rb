@@ -10,6 +10,7 @@ class ExchangesController < ApplicationController
   # GET /exchanges/1
   # GET /exchanges/1.json
   def show
+    @profiles = @exchange.profiles
   end
 
   # GET /exchanges/new
@@ -25,7 +26,6 @@ class ExchangesController < ApplicationController
   # POST /exchanges.json
   def create
     @exchange = Exchange.new(exchange_params)
-    @exchange.user = current_user
 
     respond_to do |format|
       if @exchange.save
@@ -70,6 +70,6 @@ class ExchangesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exchange_params
-      params.require(:exchange).permit(:name, :descripton, :dealine, :date, :user_id)
+      params.require(:exchange).permit(:name, :Description, :Deadline, :Date, :user_id)
     end
 end

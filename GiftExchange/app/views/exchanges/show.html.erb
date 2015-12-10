@@ -6,24 +6,53 @@
 </p>
 
 <p>
-  <strong>Descripton:</strong>
-  <%= @exchange.descripton %>
+  <strong>Description:</strong>
+  <%= @exchange.Description %>
 </p>
 
 <p>
-  <strong>Dealine:</strong>
-  <%= @exchange.dealine %>
+  <strong>Deadline:</strong>
+  <%= @exchange.Deadline %>
 </p>
 
 <p>
   <strong>Date:</strong>
-  <%= @exchange.date %>
+  <%= @exchange.Date %>
 </p>
 
 <p>
   <strong>User:</strong>
   <%= @exchange.user.name %>
   </p>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Address</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @profiles.each do |profile| %>
+          <tr>
+          <td><%= profile.name %></td>
+          <td><%= profile.description %></td>
+          <td><%= profile.address %></td>
+          <td><%= link_to 'Show', profile %></td>
+          <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+          <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Profile', new_profile_path(:xyz => @exchange.id) %>
+      
 
 <%= link_to 'Edit', edit_exchange_path(@exchange) %> |
 <%= link_to 'Back', exchanges_path %>
