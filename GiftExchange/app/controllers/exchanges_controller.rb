@@ -2,25 +2,6 @@ class ExchangesController < ApplicationController
   before_action :set_exchange, only: [:show, :edit, :update, :destroy, :assign]
 
   def assign
-    done = false
-    @gifters = @exchange.profiles
-    while done == false do
-      done = true
-      @giftees = @exchange.profiles.order('random()')
-      @gifters.each_index do |i|
-        if @gifters[i].id == @giftees[i].id then
-        end
-      end
-    end
-      @gifters.each do |i|
-        a = @gifters[i].id
-        b = @giftees[i].id
-        @giftees.each do |x|
-          if x.id == a then
-            x.update(giftee: b)
-          end
-        end
-      end
     redirect_to @exchange
   end
 
@@ -44,7 +25,7 @@ class ExchangesController < ApplicationController
   def show
     @profiles = @exchange.profiles
     @joined = false
-    if @exchange.Deadline == "NOW" then 
+    if @exchange.Deadline == "NOW" && !@profiles[0].giftee then 
 
         done = false
         @gifters = @exchange.profiles

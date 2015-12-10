@@ -17,14 +17,10 @@
 
 <%if current_user && @profile.user_id == current_user.id then%>
 <p>
-  <strong>Giftee:</strong>
+  <strong>Your Giftee Is:</strong>
   <%= @profile.giftee%>
   </p>
 <%end%>
 
-<p>
-  <strong>Exchange:</strong>
-  <%= @profile.exchange.id %>
-</p>
 
 <%= link_to 'Back', :back %>
