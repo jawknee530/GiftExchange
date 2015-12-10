@@ -8,6 +8,14 @@
     <%= f.text_field:name, autofocus: true %>
   </div>
   <div class="field">
+    <%= f.label :address%><br />
+    <%= f.text_field:address, autofocus: false%>
+  </div>
+  <div class="field">
+    <%= f.label :description%><br />
+    <%= f.text_field:description, autofocus: false%>
+  </div>
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email%>
   </div>

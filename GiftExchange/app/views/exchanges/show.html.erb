@@ -1,9 +1,5 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @exchange.name %>
-</p>
+<h2><%=@exchange.name%></h2>
 
 <p>
   <strong>Description:</strong>
@@ -21,7 +17,7 @@
 </p>
 
 <p>
-  <strong>User:</strong>
+  <strong>Owner:</strong>
   <%= @exchange.user.name %>
   </p>
 
@@ -36,23 +32,29 @@
     </thead>
 
     <tbody>
-      <% @profiles.each do |profile| %>
+    <% @profiles.each do |profile| %>
+      <%if profile.user_id == current_user.id then @joined = true end%>
           <tr>
           <td><%= profile.name %></td>
           <td><%= profile.description %></td>
           <td><%= profile.address %></td>
           <td><%= link_to 'Show', profile %></td>
-          <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
-          <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%if current_user && current_user.id == profile.user_id then%>
+            <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+            <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%end%>
         </tr>
       <% end %>
     </tbody>
   </table>
 
   <br>
-
-  <%= link_to 'New Profile', new_profile_path(:xyz => @exchange.id) %>
+  
+  <%if !@joined then %>
+    <%= link_to 'Join Exchange', new_profile_path(:xyz => @exchange.id) %> | 
+  <%end%>
       
-
-<%= link_to 'Edit', edit_exchange_path(@exchange) %> |
-<%= link_to 'Back', exchanges_path %>
+  <%if current_user && current_user.id == @exchange.user.id then %>
+    <%= link_to 'Edit', edit_exchange_path(@exchange) %> |
+  <%end%>
+<%= link_to 'Back', :back %>

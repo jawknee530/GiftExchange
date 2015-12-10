@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20151210001947) do
     t.string   "name"
     t.string   "description"
     t.string   "address"
+    t.string   "giftee"
     t.integer  "user_id"
     t.integer  "exchange_id"
     t.datetime "created_at",  null: false

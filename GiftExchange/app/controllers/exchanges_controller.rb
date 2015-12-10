@@ -11,6 +11,7 @@ class ExchangesController < ApplicationController
   # GET /exchanges/1.json
   def show
     @profiles = @exchange.profiles
+    @joined = false
   end
 
   # GET /exchanges/new
