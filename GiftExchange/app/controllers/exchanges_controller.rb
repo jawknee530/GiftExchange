@@ -2,10 +2,17 @@ class ExchangesController < ApplicationController
   before_action :set_exchange, only: [:show, :edit, :update, :destroy, :assign, :remove]
 
   def assign
+    done = false
+    @gifters = @exchange.profiles
+    while done == false do
+      done = true
+      @giftees = @exchange.profiles
+    end
     redirect_to @exchange
   end
 
   def remove
+    redirect_to @exchange
   end
 
   # GET /exchanges
