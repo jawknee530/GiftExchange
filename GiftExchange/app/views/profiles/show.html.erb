@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<h3>Giftee will be populated once dealine is reached</h3>
+<p>
+  <strong>Name:</strong>
+  <%= @profile.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @profile.description %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @profile.address %>
+</p>
+
+<p>
+  <strong>Giftee:</strong>
+  <%= @profile.giftee%>
+</p>
+
+<p>
+  <strong>Exchange:</strong>
+  <%= @profile.exchange.id %>
+</p>
+
+<%= link_to 'Back', :back %>

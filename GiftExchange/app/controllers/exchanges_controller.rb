@@ -5,6 +5,11 @@ class ExchangesController < ApplicationController
   # GET /exchanges.json
   def index
     @exchanges = Exchange.all
+    if current_user then
+      @yourExchanges = Exchange.where("user_id = ?", current_user.id)
+      @otherExchanges = @exchanges - @yourExchanges
+    else @otherExchanges = @exchanges
+    end
   end
 
   # GET /exchanges/1
