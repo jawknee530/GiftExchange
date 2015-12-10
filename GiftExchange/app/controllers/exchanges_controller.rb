@@ -1,12 +1,12 @@
 class ExchangesController < ApplicationController
-  before_action :set_exchange, only: [:show, :edit, :update, :destroy, :assign, :remove]
+  before_action :set_exchange, only: [:show, :edit, :update, :destroy, :assign]
 
   def assign
     done = false
-    @gifters = exchange.profiles
+    @gifters = @exchange.profiles
     while done == false do
       done = true
-      @giftees = exchange.profiles.order('random()')
+      @giftees = @exchange.profiles.order('random()')
       @gifters.each_index do |i|
         if @gifters[i].id == @giftees[i].id then
         end
@@ -44,6 +44,35 @@ class ExchangesController < ApplicationController
   def show
     @profiles = @exchange.profiles
     @joined = false
+    if @exchange.Deadline == "NOW" then 
+
+        done = false
+        @gifters = @exchange.profiles
+        puts '-'*50
+        puts @gifters
+        puts '-'*50
+        while done == false do
+          done = true
+          @giftees = @exchange.profiles.order('random()')
+          puts '-'*50
+          puts @giftees
+          puts '-'*50
+          @gifters.each_index do |i|
+            if @gifters[i].id == @giftees[i].id then
+              done = false
+            end
+          end
+          @gifters.each_index do |i|
+            puts @gifters[i]
+            puts @gifters[i].name
+            @gifters[i].giftee = @giftees[i].name
+            puts @gifters[i].giftee
+            puts '*'*50
+            @gifters[i].save
+          end
+        end
+
+    end
   end
 
   # GET /exchanges/new

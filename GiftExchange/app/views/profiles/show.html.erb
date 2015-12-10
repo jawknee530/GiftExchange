@@ -15,10 +15,12 @@
   <%= @profile.address %>
 </p>
 
+<%if current_user && @profile.user_id == current_user.id then%>
 <p>
   <strong>Giftee:</strong>
   <%= @profile.giftee%>
-</p>
+  </p>
+<%end%>
 
 <p>
   <strong>Exchange:</strong>

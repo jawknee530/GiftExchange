@@ -5,6 +5,7 @@ class CreateExchanges < ActiveRecord::Migration
       t.string :Description
       t.string :Deadline
       t.string :Date
+      t.string :assign
       t.references :user, index: true, foreign_key: true
 
       t.timestamps null: false

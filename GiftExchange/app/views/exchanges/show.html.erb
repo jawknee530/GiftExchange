@@ -21,10 +21,6 @@
   <%= @exchange.user.name %>
   </p>
 
-  <%if current_user && @exchange.user == current_user then%>
-    <%=button_to "Assign Giftee's", assign_exchange_path(:exchange => @exchange)%>
-    <%=button_to "Remove Giftees", remove_exchange_path(@exchange)%>
-  <%end%>
 
 <table class="table">
     <thead>
@@ -45,7 +41,7 @@
           <td><%= profile.address %></td>
           <td><%= link_to 'Show', profile %></td>
           <%if current_user && current_user.id == profile.user_id then%>
-            <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+            <td><%= link_to 'Edit', edit_profile_path(profile, :xyz => @exchange.id) %></td>
             <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <%end%>
         </tr>
@@ -60,6 +56,6 @@
   <%end%>
       
   <%if current_user && current_user.id == @exchange.user.id then %>
-    <%= link_to 'Edit', edit_exchange_path(@exchange) %> |
+    <%= link_to 'Assign Giftees', edit_exchange_path(@exchange) %> |
   <%end%>
 <%= link_to 'Back', :back %>

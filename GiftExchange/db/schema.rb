@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20151210001947) do
     t.string   "Description"
     t.string   "Deadline"
     t.string   "Date"
+    t.string   "assign"
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
