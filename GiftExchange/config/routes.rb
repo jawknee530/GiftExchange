@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :profiles
-  resources :exchanges
+  resources :exchanges do
+   post :assign, on: :member
+   post :remove, on: :member
+  end
   resources :profiles
   devise_for :users
   root 'exchanges#index'

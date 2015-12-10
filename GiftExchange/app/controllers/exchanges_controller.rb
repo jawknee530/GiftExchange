@@ -1,5 +1,12 @@
 class ExchangesController < ApplicationController
-  before_action :set_exchange, only: [:show, :edit, :update, :destroy]
+  before_action :set_exchange, only: [:show, :edit, :update, :destroy, :assign, :remove]
+
+  def assign
+    redirect_to @exchange
+  end
+
+  def remove
+  end
 
   # GET /exchanges
   # GET /exchanges.json
