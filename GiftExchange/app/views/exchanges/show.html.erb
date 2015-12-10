@@ -22,8 +22,8 @@
   </p>
 
   <%if current_user && @exchange.user == current_user then%>
-    <%=button_to "Assign Giftee's", assign_exchange_path%>
-    <%=button_to "Remove Giftees", remove_exchange_path%>
+    <%=button_to "Assign Giftee's", assign_exchange_path(:exchange => @exchange)%>
+    <%=button_to "Remove Giftees", remove_exchange_path(@exchange)%>
   <%end%>
 
 <table class="table">
