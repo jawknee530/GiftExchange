@@ -9,6 +9,10 @@
 
 
 <div class="container">
+<% if current_user then %>
+  <%= link_to 'Create New Exchange', new_exchange_path, {:style=>'color:#FFFFFF', class: 'btn btn-large btn-primary'} %>
+<%end%>
+
 <%if @yourExchanges then%>
 <h1>Your Exchanges</h1>
 
@@ -32,10 +36,10 @@
         <td><%= exchange.Deadline %></td>
         <td><%= exchange.Date %></td>
         <td><%= exchange.user.name %></td>
-        <td><%= link_to 'Show', exchange %></td>
+        <td><%= link_to 'View', exchange, {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
         <%if current_user && exchange.user.id == current_user.id then%>
           <td><%= link_to 'Edit', edit_exchange_path(exchange) %></td>
-          <td><%= link_to 'Destroy', exchange, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Delete', exchange, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <%end%>
       </tr>
     <% end %>
@@ -65,18 +69,11 @@
         <td><%= exchange.Deadline %></td>
         <td><%= exchange.Date %></td>
         <td><%= exchange.user.name %></td>
-        <td><%= link_to 'Show', exchange %></td>
-        <%if current_user && exchange.user.id == current_user.id then%>
-          <td><%= link_to 'Edit', edit_exchange_path(exchange) %></td>
-          <td><%= link_to 'Destroy', exchange, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <%end%>
+        <td><%= link_to 'View', exchange %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<% if current_user then %>
-  <%= link_to 'Create New Exchange', new_exchange_path %>
-<%end%>
 </div>

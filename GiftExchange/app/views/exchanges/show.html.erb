@@ -10,7 +10,7 @@
 
 <div class="container">
   <div class="row buttons">
-    <%if current_user && current_user.id == @exchange.user.id && @exchange.Deadline != "NOW"then %>
+    <%if current_user && current_user.id == @exchange.user.id && @profiles[1] && @exchange.Deadline != "NOW"then %>
       <%= button_to 'Assign Giftees', edit_exchange_path(@exchange), class: 'btn btn-large btn-primary'  %>
     <%end%>
     <br>
