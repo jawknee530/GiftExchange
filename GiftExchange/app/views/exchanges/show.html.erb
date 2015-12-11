@@ -1,58 +1,82 @@
 <p id="notice"><%= notice %></p>
-<h2><%=@exchange.name%></h2>
-
-<p>
-  <strong>Description:</strong>
-  <%= @exchange.Description %>
-</p>
-
-<p>
-  <strong>Deadline:</strong>
-  <%= @exchange.Deadline %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @exchange.Date %>
-</p>
-
-<p>
-  <strong>Owner:</strong>
-  <%= @exchange.user.name %>
-  </p>
 
 
-<table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Address</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
+<header class="bgimage">
+  <div class="container title">
+    <h1><%= @exchange.name %></h1>
+  </div>
+</header>
+<br>
 
-    <tbody>
-    <% @profiles.each do |profile| %>
-      <%if profile.user_id == current_user.id then @joined = true end%>
-          <tr>
-          <td><%= profile.name %></td>
-          <td><%= profile.description %></td>
-          <td><%= profile.address %></td>
-          <td><%= link_to 'View Profile', profile %></td>
-            <td><%= link_to 'Loeave Exchange', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="container">
+  <div class="row buttons">
+    <%if current_user && current_user.id == @exchange.user.id && @exchange.Deadline != "NOW"then %>
+      <%= button_to 'Assign Giftees', edit_exchange_path(@exchange), class: 'btn btn-large btn-primary'  %>
+    <%end%>
+    <br>
 
-  <br>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4  exchangeInfo">
+      <p>
+      <strong>Description:</strong><br>
+        <%= @exchange.Description %>
+      </p>
+
+      <p>
+      <strong>Deadline:</strong><br>
+        <%= @exchange.Deadline %>
+      </p>
+
+      <p>
+      <strong>Date:</strong><br>
+        <%= @exchange.Date %>
+      </p>
+
+      <p>
+      <strong>Owner:</strong><br>
+        <%= @exchange.user.name %>
+      </p>
+    </div>
+
+    <div class="col-md-8">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Address</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+          <% @profiles.each do |profile| %>
+            <%if current_user && profile.user_id == current_user.id then @joined = true end%>
+                <tr>
+                <td><%= profile.name %></td>
+                <td><%= profile.description %></td>
+                <td><%= profile.address %></td>
+                <td><%= link_to 'View Profile', profile %></td>
+                <%if current_user && current_user.id == profile.user_id then%>
+                  <td><%= link_to 'Leave Exchange', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <%elsif current_user && current_user.id == @exchange.user.id then %>
+                  <td><%= link_to 'Remove Profile', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <%end%>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row buttons">
+      <%if !@joined then %>
+        <%= link_to 'Join Exchange', new_profile_path(:xyz => @exchange.id), class: 'btn btn-large btn-primary'  %>
+      <%end%>
+    </div>
+</div>
+  <%= link_to 'Back', :back %>
   
-  <%if !@joined then %>
-    <%= link_to 'Join Exchange', new_profile_path(:xyz => @exchange.id) %> | 
-  <%end%>
-      
-  <%if current_user && current_user.id == @exchange.user.id then %>
-    <%= link_to 'Assign Giftees', edit_exchange_path(@exchange) %> |
-  <%end%>
-<%= link_to 'Back', :back %>
