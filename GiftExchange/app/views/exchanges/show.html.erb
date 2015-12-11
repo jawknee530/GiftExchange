@@ -73,7 +73,7 @@
     </div>
 
     <div class="row buttons">
-      <%if !@joined then %>
+      <%if current_user && !@joined then %>
         <%= link_to 'Join Exchange', new_profile_path(:xyz => @exchange.id), {:style=>'color:#FFFFFF', class: 'btn btn-large btn-primary'}  %>
       <%end%>
     </div>
