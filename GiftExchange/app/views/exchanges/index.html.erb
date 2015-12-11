@@ -105,7 +105,7 @@
 
     <tbody>
       <% @joinedExchanges.each do |exchange| %>
-        <%if current_user && current_user.id != exchange.user.id && exchange.Deadline == "PASSED" then%>
+        <%if current_user && current_user.id != exchange.user.id && exchange.Deadline != "PASSED" then%>
           <tr>
             <td><%= exchange.name %></td>
             <td><%= exchange.Description %></td>
