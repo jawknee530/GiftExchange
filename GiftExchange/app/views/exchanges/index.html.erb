@@ -168,7 +168,7 @@
 
   <tbody>
     <% @otherExchanges.each do |exchange| %>
-      <%if exchange.Deadline == "PASSED" then%>
+      <%if exchange.Deadline != "PASSED" then%>
         <tr>
           <td><%= exchange.name %></td>
           <td><%= exchange.Description %></td>
@@ -197,7 +197,7 @@
 
   <tbody>
     <% @otherExchanges.each do |exchange| %>
-      <%if exchange.Deadline != "PASSED" then%>
+      <%if exchange.Deadline == "PASSED" then%>
         <tr>
           <td><%= exchange.name %></td>
           <td><%= exchange.Description %></td>
