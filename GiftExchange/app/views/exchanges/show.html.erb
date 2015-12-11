@@ -10,8 +10,8 @@
 
 <div class="container">
   <div class="row buttons">
-    <%if current_user && current_user.id == @exchange.user.id && @profiles[1] && @exchange.Deadline != "NOW"then %>
-      <%= button_to 'Assign Giftees', edit_exchange_path(@exchange), class: 'btn btn-large btn-primary'  %>
+    <%if current_user && current_user.id == @exchange.user.id && @profiles[1] && @exchange.Deadline != "PASSED"then %>
+      <%= link_to 'Assign Giftees', edit_exchange_path(@exchange), {style: 'color:#FFFFFF', class: 'btn btn-large btn-primary'}  %>
     <%end%>
     <br>
 
@@ -60,9 +60,9 @@
                 <td><%= profile.description %></td>
                 <td><%= profile.address %></td>
                 <td><%= link_to 'View Profile', profile, {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
-                <%if current_user && current_user.id == profile.user_id && @exchange.Deadline != "NOW" then%>
+                <%if current_user && current_user.id == profile.user_id && @exchange.Deadline != "PASSED" then%>
                   <td><%= link_to 'Leave Exchange', profile, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-primary', style: 'color:#FFFFFF' %></td>
-                <%elsif current_user && current_user.id == @exchange.user.id && @exchange.Deadline != "NOW" then %>
+                <%elsif current_user && current_user.id == @exchange.user.id && @exchange.Deadline != "PASSED" then %>
                   <td><%= link_to 'Remove Profile', profile, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-primary', style: 'color:#FFFFFF' %></td>
                 <%end%>
               </tr>
@@ -78,5 +78,4 @@
       <%end%>
     </div>
 </div>
-  <%= link_to 'Back', :back %>
   

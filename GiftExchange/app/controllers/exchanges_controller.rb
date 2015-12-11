@@ -25,7 +25,7 @@ class ExchangesController < ApplicationController
   def show
     @profiles = @exchange.profiles
     @joined = false
-    if @exchange.Deadline == "NOW" && !@profiles[0].giftee then 
+    if @exchange.Deadline == "PASSED" && !@profiles[0].giftee then 
 
         done = false
         @gifters = @exchange.profiles
