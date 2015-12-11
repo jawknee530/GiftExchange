@@ -39,11 +39,8 @@
           <td><%= profile.name %></td>
           <td><%= profile.description %></td>
           <td><%= profile.address %></td>
-          <td><%= link_to 'Show', profile %></td>
-          <%if current_user && current_user.id == profile.user_id then%>
-            <td><%= link_to 'Edit', edit_profile_path(profile, :xyz => @exchange.id) %></td>
-            <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <%end%>
+          <td><%= link_to 'View Profile', profile %></td>
+            <td><%= link_to 'Loeave Exchange', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
