@@ -1,26 +1,33 @@
-<p id="notice"><%= notice %></p>
-<h3>Giftee will be populated once dealine is reached</h3>
-<p>
-  <strong>Name:</strong>
-  <%= @profile.name %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @profile.description %>
-</p>
+      <h3>Your Giftee will be shown below after the deadline has passed.</h3>
+      <p>
+        <strong>Name:</strong>
+        <%= @profile.name %>
+      </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @profile.address %>
-</p>
+      <p>
+        <strong>Description:</strong>
+        <%= @profile.description %>
+      </p>
 
-<%if current_user && @profile.user_id == current_user.id then%>
-<p>
-  <strong>Your Giftee Is:</strong>
-  <%= @profile.giftee%>
-  </p>
-<%end%>
+      <p>
+        <strong>Address:</strong>
+        <%= @profile.address %>
+      </p>
+
+      <%if current_user && @profile.user_id == current_user.id then%>
+      <p>
+        <strong>Your Giftee Is:</strong>
+        <%= @profile.giftee%>
+        </p>
+      <%end%>
 
 
-<%= link_to 'Back', :back %>
+      <%= link_to 'Back', :back, {style: 'color:#FFFFFF', class: 'btn btn-large btn-primary'} %>
+    </div>
+  </div>
+</div>
