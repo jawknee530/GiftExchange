@@ -18,6 +18,18 @@ class ExchangesController < ApplicationController
       @otherExchanges = @exchanges - @yourExchanges
     else @otherExchanges = @exchanges
     end
+    if current_user then
+      joined = false
+      @joinedExchanges = @exchanges.map {|x| x.profiles.each do |i| 
+                                               if i.user_id == current_user.id then 
+                                                 joined = true else joined = false
+                                               end
+                                             end
+                                             if joined then x end}.compact
+    end
+    puts '-'*50
+    puts @joinedExchanges
+    puts '-'*50
   end
 
   # GET /exchanges/1
