@@ -18,7 +18,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-4  exchangeInfo">
+    <div class="col-md-3  exchangeInfo">
       <p>
       <strong>Description:</strong><br>
         <%= @exchange.Description %>
@@ -40,7 +40,7 @@
       </p>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-9">
       <div class="table-responsive">
         <table class="table">
           <thead>
@@ -60,9 +60,9 @@
                 <td><%= profile.description %></td>
                 <td><%= profile.address %></td>
                 <td><%= link_to 'View Profile', profile %></td>
-                <%if current_user && current_user.id == profile.user_id then%>
+                <%if current_user && current_user.id == profile.user_id && @exchange.Deadline != "NOW" then%>
                   <td><%= link_to 'Leave Exchange', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                <%elsif current_user && current_user.id == @exchange.user.id then %>
+                <%elsif current_user && current_user.id == @exchange.user.id && @exchange.Deadline != "NOW" then %>
                   <td><%= link_to 'Remove Profile', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 <%end%>
               </tr>
