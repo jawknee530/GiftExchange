@@ -12,204 +12,222 @@
 <% if current_user then %>
   <%= link_to 'Create New Exchange', new_exchange_path, {:style=>'color:#FFFFFF', class: 'btn btn-large btn-primary'} %>
 <%end%>
+</div>
+<br>
 
 <!------------------------------ TWO TABLES FOR OWNED EXCHANGES -------------------------------------------------->
 
-<div class="row">
-<%if @yourExchanges then%>
-  <h1 class="col-md-4 col-md-offset-4 exchangeTitle">Your Exchanges</h1>
-</div>
-  <hr>
-  <h2>Open</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Sign-Up Deadline</th>
-        <th>Exchange Date</th>
-        <th>Owner</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#Owned">Owned</a></li>
+    <li><a data-toggle="tab" href="#Joined">Joined</a></li>
+    <li><a data-toggle="tab" href="#Other">Other</a></li>
+  </ul>
 
-    <tbody>
-      <% @yourExchanges.each do |exchange| %>
-        <%if exchange.Deadline != "PASSED" then%>
+  <div class="tab-content">
+    <div id="Owned" class="tab-pane fade in active">
+      <%if @yourExchanges then%>
+      <div class="row">
+        <h1 class="col-md-6 col-md-offset-3 exchangeTitle">Your Owned Exchanges</h1>
+      </div>
+      <hr>
+      <h2>Open</h2>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= exchange.name %></td>
-            <td><%= exchange.Description %></td>
-            <td><%= exchange.Deadline %></td>
-            <td><%= exchange.Date %></td>
-            <td><%= exchange.user.name %></td>
-            <td><%= link_to 'View', exchange, {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
-            <%if current_user && exchange.user.id == current_user.id then%>
-              <td><%= link_to 'Delete', exchange, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-primary', style: 'color:#FFFFFF' %></td>
-            <%end%>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Sign-Up Deadline</th>
+            <th>Exchange Date</th>
+            <th>Owner</th>
+            <th colspan="3"></th>
           </tr>
-        <%end%>
-      <% end %>
-    </tbody>
-  </table>
-  <h2>Closed</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Sign-Up Deadline</th>
-        <th>Exchange Date</th>
-        <th>Owner</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
+        </thead>
 
-    <tbody>
-      <% @yourExchanges.each do |exchange| %>
-        <%if exchange.Deadline == "PASSED" then%>
-          <tr>
-            <td><%= exchange.name %></td>
-            <td><%= exchange.Description %></td>
-            <td><%= exchange.Deadline %></td>
-            <td><%= exchange.Date %></td>
-            <td><%= exchange.user.name %></td>
-            <td><%= link_to 'View', exchange, {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
-            <%if current_user && exchange.user.id == current_user.id then%>
-              <td><%= link_to 'Delete', exchange, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-primary', style: 'color:#FFFFFF' %></td>
-            <%end%>
-          </tr>
-        <%end%>
-      <% end %>
-    </tbody>
-  </table>
-<%end%>
+          <tbody>
+            <% @yourExchanges.each do |exchange| %>
+              <%if exchange.Deadline != "PASSED" then%>
+                <tr>
+                  <td><%= exchange.name %></td>
+                  <td><%= exchange.Description %></td>
+                  <td><%= exchange.Deadline %></td>
+                  <td><%= exchange.Date %></td>
+                  <td><%= exchange.user.name %></td>
+                  <td><%= link_to 'View', exchange, {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
+                  <%if current_user && exchange.user.id == current_user.id then%>
+                    <td><%= link_to 'Delete', exchange, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-primary', style: 'color:#FFFFFF' %></td>
+                  <%end%>
+                </tr>
+              <%end%>
+            <% end %>
+          </tbody>
+        </table>
+        <h2>Closed</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Sign-Up Deadline</th>
+              <th>Exchange Date</th>
+              <th>Owner</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @yourExchanges.each do |exchange| %>
+              <%if exchange.Deadline == "PASSED" then%>
+                <tr>
+                  <td><%= exchange.name %></td>
+                  <td><%= exchange.Description %></td>
+                  <td><%= exchange.Deadline %></td>
+                  <td><%= exchange.Date %></td>
+                  <td><%= exchange.user.name %></td>
+                  <td><%= link_to 'View', exchange, {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
+                  <%if current_user && exchange.user.id == current_user.id then%>
+                    <td><%= link_to 'Delete', exchange, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-primary', style: 'color:#FFFFFF' %></td>
+                  <%end%>
+                </tr>
+              <%end%>
+            <% end %>
+          </tbody>
+        </table>
+      <%end%>
+      </div><!-- class tab-pane fade in active -->
 
 <!------------------------------ TWO TABLES FOR JOINED EXCHANGES -------------------------------------------------->
-<%if @joinedExchanges then%>
-  <div class='row'>
-    <h1 class="col-md-4 col-md-offset-4 exchangeTitle">Joined Exchanges</h1>
-  </div>
-  <hr>
-  <h2>Open</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Sign-Up Deadline</th>
-        <th>Exchange Date</th>
-        <th>Owner</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @joinedExchanges.each do |exchange| %>
-        <%if current_user && current_user.id != exchange.user.id && exchange.Deadline != "PASSED" then%>
+  <div id="Joined" class="tab-pane fade">
+    <%if @joinedExchanges then%>
+    <div class="row">
+      <h1 class="col-md-6 col-md-offset-3 exchangeTitle">Exchanges You've Joined</h1>
+    </div>
+    <hr>
+      <h2>Open</h2>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= exchange.name %></td>
-            <td><%= exchange.Description %></td>
-            <td><%= exchange.Deadline %></td>
-            <td><%= exchange.Date %></td>
-            <td><%= exchange.user.name %></td>
-            <td><%= link_to 'View', exchange, {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Sign-Up Deadline</th>
+            <th>Exchange Date</th>
+            <th>Owner</th>
+            <th colspan="3"></th>
           </tr>
-        <%end%>
-      <% end %>
-    </tbody>
-  </table>
+        </thead>
 
-  <h2>Closed</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Sign-Up Deadline</th>
-        <th>Exchange Date</th>
-        <th>Owner</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
+        <tbody>
+          <% @joinedExchanges.each do |exchange| %>
+            <%if current_user && current_user.id != exchange.user.id && exchange.Deadline != "PASSED" then%>
+              <tr>
+                <td><%= exchange.name %></td>
+                <td><%= exchange.Description %></td>
+                <td><%= exchange.Deadline %></td>
+                <td><%= exchange.Date %></td>
+                <td><%= exchange.user.name %></td>
+                <td><%= link_to 'View', exchange, {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
+              </tr>
+            <%end%>
+          <% end %>
+        </tbody>
+      </table>
 
-    <tbody>
-      <% @joinedExchanges.each do |exchange| %>
-        <%if current_user && current_user.id != exchange.user.id && exchange.Deadline == "PASSED" then%>
+      <h2>Closed</h2>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= exchange.name %></td>
-            <td><%= exchange.Description %></td>
-            <td><%= exchange.Deadline %></td>
-            <td><%= exchange.Date %></td>
-            <td><%= exchange.user.name %></td>
-            <td><%= link_to 'View', exchange, {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Sign-Up Deadline</th>
+            <th>Exchange Date</th>
+            <th>Owner</th>
+            <th colspan="3"></th>
           </tr>
-        <%end%>
-      <% end %>
-    </tbody>
-  </table>
-<%end%>
+        </thead>
+
+        <tbody>
+          <% @joinedExchanges.each do |exchange| %>
+            <%if current_user && current_user.id != exchange.user.id && exchange.Deadline == "PASSED" then%>
+              <tr>
+                <td><%= exchange.name %></td>
+                <td><%= exchange.Description %></td>
+                <td><%= exchange.Deadline %></td>
+                <td><%= exchange.Date %></td>
+                <td><%= exchange.user.name %></td>
+                <td><%= link_to 'View', exchange, {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
+              </tr>
+            <%end%>
+          <% end %>
+        </tbody>
+      </table>
+    <%end%>
+  </div><!-- class tab-pane fade -->
 <!------------------------------ TWO TABLES FOR OTHER EXCHANGES -------------------------------------------------->
-<div class='row'>
-  <h1 class="col-md-4 col-md-offset-4 exchangeTitle">Other Exchanges</h1>
+  <div id="Other" class="tab-pane fade">
+    <div class="row">
+      <h1 class="col-md-4 col-md-offset-4 exchangeTitle">Open Exchanges</h1>
+    </div>
+    <hr>
+    <h2>Open</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Sign-Up Deadline</th>
+          <th>Exchange Date</th>
+          <th>Owner</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @otherExchanges.each do |exchange| %>
+          <%if exchange.Deadline != "PASSED" then%>
+            <tr>
+              <td><%= exchange.name %></td>
+              <td><%= exchange.Description %></td>
+              <td><%= exchange.Deadline %></td>
+              <td><%= exchange.Date %></td>
+              <td><%= exchange.user.name %></td>
+              <td><%= link_to 'View', exchange, {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
+            </tr>
+          <%end%>
+        <% end %>
+      </tbody>
+    </table>
+
+    <h2>Closed</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Sign-Up Deadline</th>
+          <th>Exchange Date</th>
+          <th>Owner</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @otherExchanges.each do |exchange| %>
+          <%if exchange.Deadline == "PASSED" then%>
+            <tr>
+              <td><%= exchange.name %></td>
+              <td><%= exchange.Description %></td>
+              <td><%= exchange.Deadline %></td>
+              <td><%= exchange.Date %></td>
+              <td><%= exchange.user.name %></td>
+              <td><%= link_to 'View', exchange, {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
+            </tr>
+          <%end%>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- class tab-pan fade -->
 </div>
-<hr>
-<h2>Open</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Sign-Up Deadline</th>
-      <th>Exchange Date</th>
-      <th>Owner</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @otherExchanges.each do |exchange| %>
-      <%if exchange.Deadline != "PASSED" then%>
-        <tr>
-          <td><%= exchange.name %></td>
-          <td><%= exchange.Description %></td>
-          <td><%= exchange.Deadline %></td>
-          <td><%= exchange.Date %></td>
-          <td><%= exchange.user.name %></td>
-          <td><%= link_to 'View', exchange, {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
-        </tr>
-      <%end%>
-    <% end %>
-  </tbody>
-</table>
-
-<h2>Closed</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Sign-Up Deadline</th>
-      <th>Exchange Date</th>
-      <th>Owner</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @otherExchanges.each do |exchange| %>
-      <%if exchange.Deadline == "PASSED" then%>
-        <tr>
-          <td><%= exchange.name %></td>
-          <td><%= exchange.Description %></td>
-          <td><%= exchange.Deadline %></td>
-          <td><%= exchange.Date %></td>
-          <td><%= exchange.user.name %></td>
-          <td><%= link_to 'View', exchange, {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
-        </tr>
-      <%end%>
-    <% end %>
-  </tbody>
-</table>
 
 <br>
 </div>
