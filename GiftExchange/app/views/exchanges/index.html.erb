@@ -38,7 +38,7 @@
         <td><%= exchange.user.name %></td>
         <td><%= link_to 'View', exchange, {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
         <%if current_user && exchange.user.id == current_user.id then%>
-          <td><%= link_to 'Edit', edit_exchange_path(exchange) %></td>
+          <td><%= link_to 'Edit', edit_exchange_path(exchange), {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
           <td><%= link_to 'Delete', exchange, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <%end%>
       </tr>
@@ -69,7 +69,7 @@
         <td><%= exchange.Deadline %></td>
         <td><%= exchange.Date %></td>
         <td><%= exchange.user.name %></td>
-        <td><%= link_to 'View', exchange %></td>
+        <td><%= link_to 'View', exchange, {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
       </tr>
     <% end %>
   </tbody>
