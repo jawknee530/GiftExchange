@@ -14,11 +14,6 @@ class ExchangesController < ApplicationController
   def index
     @exchanges = Exchange.all
     if current_user then
-      @yourExchanges = Exchange.where("user_id = ?", current_user.id)
-      @otherExchanges = @exchanges - @yourExchanges
-    else @otherExchanges = @exchanges
-    end
-    if current_user then
       joined = false
       @joinedExchanges = @exchanges.map {|x| x.profiles.each do |i| 
                                                if i.user_id == current_user.id then 
@@ -26,6 +21,11 @@ class ExchangesController < ApplicationController
                                                end
                                              end
                                              if joined then x end}.compact
+    end
+    if current_user then
+      @yourExchanges = Exchange.where("user_id = ?", current_user.id)
+      @otherExchanges = @exchanges - @yourExchanges - @joinedExchanges
+    else @otherExchanges = @exchanges
     end
     puts '-'*50
     puts @joinedExchanges
