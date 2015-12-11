@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<div class="container">
 <%if @yourExchanges then%>
 <h1>Your Exchanges</h1>
 
@@ -70,3 +71,4 @@
 <% if current_user then %>
   <%= link_to 'Create New Exchange', new_exchange_path %>
 <%end%>
+</div>
