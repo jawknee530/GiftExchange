@@ -59,7 +59,7 @@
                 <td><%= profile.name %></td>
                 <td><%= profile.description %></td>
                 <td><%= profile.address %></td>
-                <td><%= link_to 'View Profile', profile %></td>
+                <td><%= link_to 'View Profile', profile, {:style=>'color:#FFFFFF', class: 'btn btn-sm btn-primary'} %></td>
                 <%if current_user && current_user.id == profile.user_id && @exchange.Deadline != "NOW" then%>
                   <td><%= link_to 'Leave Exchange', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 <%elsif current_user && current_user.id == @exchange.user.id && @exchange.Deadline != "NOW" then %>
