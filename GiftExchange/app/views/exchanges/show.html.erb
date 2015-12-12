@@ -13,7 +13,9 @@
     <%if current_user && current_user.id == @exchange.user.id && @profiles[1] && @exchange.Deadline != "PASSED"then %>
       <%= link_to 'Assign Giftees', edit_exchange_path(@exchange), {style: 'color:#FFFFFF', class: 'btn btn-large btn-primary'}  %>
     <%else%>
-      <h2>Giftees Assigned. Check Your Profile.</h2>  
+      <div class="well">
+        <h2>Giftees Assigned. Check Your Profile.</h2>  
+      </div>
     <%end%>
     <br>
   </div>
@@ -70,7 +72,7 @@
             <% end %>
           </tbody>
         </table>
-      </div>
+      </div><!-- class="table-responsive" -->
     </div>
 
     <div class="row buttons">
