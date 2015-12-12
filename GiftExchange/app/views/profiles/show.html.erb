@@ -3,7 +3,11 @@
     <div class="col-sm-6 col-sm-offset-3">
       <p id="notice"><%= notice %></p>
 
-      <h3>Your Giftee will be shown below after the deadline has passed.</h3>
+      <%if @profile.exchange.Deadline != "PASSED" then%>
+        <h3>You Have Not Been Assigned A Giftee</h3>
+      <%else%>
+        <h3>You Have Been Assigned A Giftee<h3>
+      <%end%>
       <p>
         <strong>Name:</strong>
         <%= @profile.name %>
