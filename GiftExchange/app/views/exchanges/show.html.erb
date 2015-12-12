@@ -16,6 +16,10 @@
       <div class="well">
         <h2>Giftees Assigned. Check Your Profile.</h2>  
       </div>
+    <%elsif @exchange.Deadline != "PASSED" then%>
+      <div class="Well">
+        <h2>Sign-Up Deadline Not Reached.</h2>
+      </div>
     <%end%>
     <br>
   </div>

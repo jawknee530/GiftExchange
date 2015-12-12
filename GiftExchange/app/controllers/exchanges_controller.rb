@@ -20,7 +20,7 @@ class ExchangesController < ApplicationController
                                                  joined = true else joined = false
                                                end
                                              end
-                                             if joined then x end}.compact
+                                             if joined then joined = false; x end}.compact
     end
     if current_user then
       @yourExchanges = Exchange.where("user_id = ?", current_user.id)
