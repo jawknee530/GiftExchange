@@ -10,6 +10,15 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    @exchange = @profile.exchange
+    @profiles = @exchange.profiles
+    puts '-'*50
+    puts @profiles
+    puts '-'*50
+    #insane way to get the giftees name
+    @giftee = @profiles.map {|x| if x.name == @profile.giftee then x end}.compact
+    @giftee.each do |i| @xyz = i.name end 
+
   end
 
   # GET /profiles/new

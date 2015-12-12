@@ -1,37 +1,35 @@
+
 <div class="container">
   <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
+    <div class="buttons">
       <p id="notice"><%= notice %></p>
 
-      <%if @profile.exchange.Deadline != "PASSED" then%>
-        <h3>You Have Not Been Assigned A Giftee</h3>
-      <%else%>
-        <h3>You Have Been Assigned A Giftee<h3>
-      <%end%>
-      <p>
-        <strong>Name:</strong>
-        <%= @profile.name %>
-      </p>
-
-      <p>
-        <strong>Description:</strong>
-        <%= @profile.description %>
-      </p>
-
-      <p>
-        <strong>Address:</strong>
-        <%= @profile.address %>
-      </p>
-
       <%if current_user && @profile.user_id == current_user.id then%>
-      <p>
-        <strong>Your Giftee Is:</strong>
-        <%= @profile.giftee%>
-        </p>
+        <%if @profile.exchange.Deadline != "PASSED" then%>
+          <h3>You Have Not Been Assigned A Giftee</h3>
+        <%else%>              
+          <h3>You have been assigned <strong><%= @xyz%>.</strong><h3>
+            <%= link_to 'View Giftees Profile', profile_path(@giftee), {style: 'color:#FFFFFF', class: 'btn btn-large btn-primary'} %>
+        <%end%>
+        <%= link_to 'Return to Exchange', exchange_path(@profile.exchange), {style: 'color:#FFFFFF', class: 'btn btn-large btn-primary'} %>
+      <%else%>
+        </div>
+        <div class="col-sm-4 col-sm-offset-4">
+          <h3>Viewing profile of <strong><%=@profile.name%></strong>.</h3>
+            <p>
+              <strong>Description:</strong>
+              <%= @profile.description %>
+            </p>
+            <p>
+              <strong>Address:</strong>
+              <%= @profile.address %>
+            </p>
+            <%= link_to 'Return to Exchange', exchange_path(@profile.exchange), {style: 'color:#FFFFFF', class: 'btn btn-large btn-primary'} %>
+        </div>
+
       <%end%>
+    </div><!-- class="buttons" -->
+  </div><!-- class="row" -->
+</div><!-- class="container" -->
+<br>
 
-
-      <%= link_to 'Back', :back, {style: 'color:#FFFFFF', class: 'btn btn-large btn-primary'} %>
-    </div>
-  </div>
-</div>
